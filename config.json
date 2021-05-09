@@ -1,0 +1,22 @@
+{
+  "bilibiliCookies": {
+    "SESSDATA": "浏览器 B站 cookie 获取",
+    "bili_jct": "浏览器 B站 cookie 获取",
+    "DedeUserID": "浏览器 B站 cookie 获取"
+  },
+  "coinConfig": {
+    "rid": 20,
+    "num": 5
+  },
+  "emailConfig": {
+    "sender": "发件邮箱地址",
+    "sender_name": "发件邮箱名",
+    "receivers": [
+      "收件邮箱地址"
+    ],
+    "recievers_name": "收件邮箱名",
+    "smtpHost": "smtp.qq.com",
+    "smtpPort": 465,
+    "authCode": "开启 smtp 服务后的授权码"
+  }
+}

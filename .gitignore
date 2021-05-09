@@ -1,0 +1,6 @@
+config.json.backup
+build
+.idea
+__pycache__
+dist/
+venv
