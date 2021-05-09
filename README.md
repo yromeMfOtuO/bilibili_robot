@@ -1,4 +1,11 @@
-> 修改config.json中的配置即可执行 bilibili_robot.py自动投币。
+## 更新日志
+
+### 20210509
+* 每日自动投币
+
+
+> 
+>  修改config.json中的配置即可执行 bilibili_robot.py自动投币。
 > 
 > 通知使用 qq 邮箱，需要开通 smtp 服务，并在 config.json 中的授权码。  
 > 
