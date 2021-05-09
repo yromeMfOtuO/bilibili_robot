@@ -7,7 +7,8 @@ class BilibiliClient(object):
 
     __headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36",
-        "Referer": "https://www.bilibili.com/"}
+        "Referer": "https://www.bilibili.com/"
+    }
 
     def __init__(self, config):
         if config is None or config.properties['bilibiliCookies'] is None:
@@ -27,19 +28,19 @@ class BilibiliClient(object):
         if json.loads(content.text)["code"] != 0:
             raise Exception("参数验证失败，登录状态失效")
 
-    def getReward(self):
+    def get_reward(self):
         # 取B站经验信息
         url = "https://account.bilibili.com/home/reward"
         content = self.__session.get(url)
         return json.loads(content.text)["data"]
 
-    def getCoin(self):
+    def get_coin(self):
         # 获取剩余硬币数
         url = "https://api.bilibili.com/x/web-interface/nav?build=0&mobi_app=web"
         content = self.__session.get(url)
         return int(json.loads(content.text)["data"]["money"])
 
-    def coin(self, aid, num, select_like):
+    def add_coin(self, aid, num, select_like):
         # 给指定av号视频投币
         url = "https://api.bilibili.com/x/web-interface/coin/add"
         post_data = {
@@ -74,7 +75,7 @@ class BilibiliClient(object):
         content = self.__session.post(url, post_data)
         return json.loads(content.text)
 
-    def getHomePageUrls(self):
+    def get_home_page_urls(self):
         # 取B站首页推荐视频地址列表
         import re
         url = "https://www.bilibili.com"
@@ -84,17 +85,13 @@ class BilibiliClient(object):
         return match
 
     @staticmethod
-    def getRegions(rid=1, num=6):
+    def get_regions(rid=1, num=6):
         # 获取B站分区视频信息
         url = "https://api.bilibili.com/x/web-interface/dynamic/region?ps=" + str(num) + "&rid=" + str(rid)
         content = requests.get(url, headers=BilibiliClient.__headers)
-        datas = json.loads(content.text)["data"]["archives"]
+        data = json.loads(content.text)["data"]["archives"]
         ids = []
-        for x in datas:
+        for x in data:
             ids.append({"title": x["title"], "aid": x["aid"], "bvid": x["bvid"], "cid": x["cid"]})
         return ids
 
-
-if __name__ == '__main__':
-    client = BilibiliClient()
-    client.getCoin()
