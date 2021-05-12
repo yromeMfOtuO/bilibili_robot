@@ -1,6 +1,8 @@
 config.json.backup
+config.json
 build
 .idea
 __pycache__
 dist/
 venv
+test.py
