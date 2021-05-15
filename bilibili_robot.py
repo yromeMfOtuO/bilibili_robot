@@ -40,6 +40,12 @@ coin_after = bilibili.get_coin()
 add_content(f"投币完成，硬币数量 {coin_after}!!!")
 print(content)
 
+# 模拟观看视频
+add_content("")
+add_content("开始模拟观看视频")
+report = bilibili.report(avs[0]['aid'], avs[0]['cid'], 300)
+add_content(f"模拟观看视频 https://www.bilibili.com/video/{avs[0]['bvid']} 完成!!!")
+
 # 分享视频
 add_content("")
 add_content("开始分享视频")
