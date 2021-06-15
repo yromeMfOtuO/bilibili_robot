@@ -3,7 +3,7 @@ from os import linesep
 from time import sleep
 
 from services.bilibili_client import BilibiliClient
-from services.config import Config
+from services.config import Config, VisionConfig
 from services.email_client import EmailClient
 
 
@@ -13,7 +13,7 @@ def add_content(line):
 
 
 # 当前日期
-config = Config()
+config = VisionConfig()
 config.print()
 email = EmailClient(config)
 date_str = date.now().strftime('%Y-%m-%d')

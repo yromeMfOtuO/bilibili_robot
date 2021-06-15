@@ -1,6 +1,8 @@
 import json
 import os
 
+import requests
+
 
 class Config:
     """配置类从当前路径或者上级路径读取配置"""
@@ -25,7 +27,29 @@ class Config:
         print(self.properties)
 
 
+class VisionConfig:
+    """
+    从 vision 项目获取配置
+    """
+    def __init__(self):
+        try:
+            resp = requests.get("http://<host>:<port>/client/config",
+                                # 设置 http basic auth 参数
+                                auth=('weihao.lv', "weihao.lv@vision"),
+                                params={"name": "bilibili"})
+            self.properties = json.loads(resp.content)['data']
+            print(self.properties)
+        except Exception as e:
+            print(e)
+            raise Exception("从 vision 获取配置异常")
+
+    def print(self):
+        print(self.properties)
+
+
 if __name__ == '__main__':
     config = Config()
     config.print()
 
+    vision_config = VisionConfig()
+    vision_config.print()
